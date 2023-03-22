@@ -1,0 +1,148 @@
+:root {
+  --main: #777;
+  --blue50: hsl(200, 100%, 50%);
+  --blue70: hsl(200, 100%, 70%);
+  --dark: #333;
+  --inputBorder: .05em solid var(--main);
+  --inputRadious: .25em;
+}
+
+.container {
+  position: relative;
+  width: 20em;
+  min-height: 2em; /* to allow wrap on multiple */
+  border: var(--inputBorder);
+  border-radius: var(--inputRadious);
+  display: flex;
+  align-items: center;
+  gap: .5em;
+  padding: .5em;
+  outline: none;
+}
+
+.container:focus {
+  border-color: var(--blue50);
+}
+
+.label {
+  position: absolute;
+  display: flex;
+  top: -.5em;
+  font-size: .8em;
+  color: var(--main);
+}
+
+.label::before,
+.label::after {
+  /* margin: 0 .5em; */
+  content: ' ';
+  height: 2px;
+  background: #333;
+  display: block;
+  width: 50%;
+}
+
+.value {
+  flex-grow: 1;
+  display: flex;
+  gap: .5em;
+  flex-wrap: wrap;
+}
+
+.clear-btn {
+  background: none;
+  border: none;
+  color: var(--main);
+  outline: none;
+  cursor: pointer;
+  font-size: 1.25em;
+  padding: 0;
+}
+
+.clear-btn:focus,
+.clear-btn:hover {
+  color: var(--dark);
+}
+
+.divider {
+  background-color: var(--main);
+  width: .05em;
+  align-self: stretch; /* allow override the heigth due to container has min-heigth proerty */
+}
+
+.caret {
+  translate: 0 25%; /* to align in the center */
+  border: .25em solid transparent;
+  border-top-color: var(--main);
+  cursor: pointer;
+}
+
+.caret.open {
+  translate: 0 -25%; /* to align in the center */
+  border: .25em solid transparent;
+  border-bottom-color: var(--main);
+  cursor: pointer;
+}
+
+.options {
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: none;
+  max-height: 15em;
+  overflow-y: auto;
+  border: var(--inputBorder);
+  border-radius: var(--inputRadious);
+  width: 100%;
+  left: 0;
+  top: calc(100% + .8em);
+  background-color: white;
+  z-index: 100;
+}
+
+.options.show {
+  display: block;
+}
+
+.option {
+  padding: .25em .5em;
+  cursor: pointer;
+}
+
+.option.selected {
+  background-color: var(--blue70);
+}
+
+.option.highlighted {
+  background-color: var(--main);
+  color: white;
+}
+
+.option-bagde {
+  display: flex;
+  align-items: center;
+  border: 0.05em solid var(--main);
+  border-radius: var(--inputRadious);
+  padding: .15em .25em;
+  gap: .25em;
+  cursor: pointer;
+  background: none;
+  outline: none;
+}
+
+.option-bagde:hover,
+.option-bagde:focus {
+  background-color: hsl(0, 100%, 90%);
+  border-color: hsl(0, 100%, 50%);
+}
+
+.option-bagde:hover > .remove-option-btn,
+.option-bagde:focus > .remove-option-btn {
+  color: hsl(0, 100%, 50%);
+}
+
+.option-bagde > .remove-option-btn {
+  font-size: 1.25em;
+  color: var(--main);
+}
